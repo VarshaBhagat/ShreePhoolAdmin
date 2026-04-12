@@ -6,8 +6,9 @@ export default function Orders() {
   const [orders, setOrders] = useState<any[]>([]);
 
   const fetchOrders = async () => {
-    const res = await API.get("/orders/tomorrow");
-    setOrders(res.data);
+    // const res = await API.get("/basket");
+    // console.log(res.data);
+    setOrders([]);
   };
 
   useEffect(() => {

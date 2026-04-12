@@ -7,8 +7,8 @@ export default function Navbar() {
       <h2>🌸 ShreePhool Admin</h2>
 
       <div>
-        <Link to="/">Products</Link>
-        <Link to="/orders" style={{ marginLeft: 20 }}>
+        <Link to="/" style={styles.link}>Products</Link>
+        <Link to="/orders" style={{ ...styles.link, marginLeft: 20 }}>
           Orders
         </Link>
       </div>
@@ -23,5 +23,9 @@ const styles = {
     padding: "15px 30px",
     background: "#6c5ce7",
     color: "white",
+  },
+  link: {
+    color: "white",
+    textDecoration: "none",
   },
 };
