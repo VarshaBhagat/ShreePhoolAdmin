@@ -16,7 +16,7 @@ interface Product {
   quantitySubcribed?: number;
 }
 
-interface ProductForm {
+export interface ProductForm {
   name: string;
   quantity: string;
   price: string;
@@ -26,13 +26,29 @@ interface ProductForm {
   quantitySubcribed: string;
 }
 
-type FormErrors = Partial<Record<keyof ProductForm, string>>;
+export type FormErrors = Partial<Record<keyof ProductForm, string>>;
 
 export default function Products() {
   const [products, setProducts] = useState<Product[]>([]);
-  const [showModal, setShowModal] = useState<boolean>(false);
+
+  /* ✅ Add Modal */
+  const [showModal, setShowModal] = useState(false);
+
+  /* ✅ Edit Modal */
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editId, setEditId] = useState<string | null>(null);
 
   const [form, setForm] = useState<ProductForm>({
+    name: "",
+    quantity: "",
+    price: "",
+    description: "",
+    image: null,
+    isSubcibed: false,
+    quantitySubcribed: "",
+  });
+
+  const [editForm, setEditForm] = useState<ProductForm>({
     name: "",
     quantity: "",
     price: "",
@@ -48,7 +64,7 @@ export default function Products() {
   /* ✅ Fetch */
   const fetchProducts = async () => {
     const res = await API.get<{ data: Product[] }>(
-      "http://localhost:5001/api/products"
+      `${process.env.REACT_APP_BASE_URL}/products`
     );
     setProducts(res.data?.data);
   };
@@ -57,47 +73,58 @@ export default function Products() {
     fetchProducts();
   }, []);
 
-  /* ✅ Handle Change */
+  /* ✅ Common Change */
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    isEdit = false
   ) => {
     const { name, value, type } = e.target;
     const checked = (e.target as HTMLInputElement).checked;
 
-    setForm((prev) => ({
+    const update = (prev: ProductForm) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
-    }));
+    });
+
+    isEdit
+      ? setEditForm(update)
+      : setForm(update);
   };
 
-  /* ✅ Image Upload */
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+  /* ✅ Image */
+  const handleImageChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    isEdit = false
+  ) => {
     const file = e.target.files?.[0];
 
     if (file) {
-      setForm((prev) => ({ ...prev, image: file }));
+      if (isEdit) {
+        setEditForm((prev) => ({ ...prev, image: file }));
+      } else {
+        setForm((prev) => ({ ...prev, image: file }));
+      }
+
       setPreview(URL.createObjectURL(file));
     }
   };
 
   /* ✅ Validation */
-  const validate = (): boolean => {
+  const validate = (data: ProductForm): boolean => {
     const err: FormErrors = {};
 
-    if (!form.name.trim()) err.name = "Name is required";
-    if (!form.quantity) err.quantity = "Quantity is required";
-    if (!form.price) err.price = "Price is required";
-    if (!form.description.trim())
-      err.description = "Description is required";
-    if (!form.image) err.image = "Image is required";
+    if (!data.name.trim()) err.name = "Name required";
+    if (!data.quantity) err.quantity = "Quantity required";
+    if (!data.price) err.price = "Price required";
+    if (!data.description.trim()) err.description = "Description required";
 
     setErrors(err);
     return Object.keys(err).length === 0;
   };
 
-  /* ✅ Submit */
+  /* ✅ Add Submit */
   const handleSubmit = async () => {
-    if (!validate()) return;
+    if (!validate(form)) return;
 
     const formData = new FormData();
 
@@ -109,78 +136,119 @@ export default function Products() {
       }
     });
 
-    try {
-      await API.post(
-        "http://localhost:5001/api/add-product",
-        formData
-      );
+    await API.post(
+      `${process.env.REACT_APP_BASE_URL}/add-product`,
+      formData
+    );
 
-      setShowModal(false);
-      fetchProducts();
+    setShowModal(false);
+    fetchProducts();
 
-      setForm({
-        name: "",
-        quantity: "",
-        price: "",
-        description: "",
-        image: null,
-        isSubcibed: false,
-        quantitySubcribed: "",
-      });
+    setForm({
+      name: "",
+      quantity: "",
+      price: "",
+      description: "",
+      image: null,
+      isSubcibed: false,
+      quantitySubcribed: "",
+    });
 
-      setPreview(null);
-      setErrors({});
-    } catch (err) {
-      console.error("Error adding product:", err);
-    }
+    setPreview(null);
+  };
+
+  /* ✅ Edit Click */
+  const handleUpdate = (item: Product) => {
+    setEditId(item._id);
+
+    setEditForm({
+      name: item.name,
+      quantity: String(item.quantity),
+      price: item.price,
+      description: item.description,
+      image: null,
+      isSubcibed: item.isSubcibed,
+      quantitySubcribed: item.quantitySubcribed
+        ? String(item.quantitySubcribed)
+        : "",
+    });
+
+    setPreview(item.image || null);
+    setShowEditModal(true);
+  };
+
+  /* ✅ Edit Submit */
+  const handleEditSubmit = async () => {
+    if (!editId) return;
+    if (!validate(editForm)) return;
+
+    const formData = new FormData();
+
+    Object.entries(editForm).forEach(([key, value]) => {
+      if (key === "image" && value instanceof File) {
+        formData.append("image", value);
+      } else {
+        formData.append(key, String(value));
+      }
+    });
+
+    await API.put(
+      `${process.env.REACT_APP_BASE_URL}/product/${editId}`,
+      formData
+    );
+
+    setShowEditModal(false);
+    fetchProducts();
   };
 
   /* ✅ Delete */
   const handleDelete = async (id: string) => {
-    try {
-      await API.delete(
-        `http://localhost:5001/api/product/${id}`
-      );
-      fetchProducts();
-    } catch (err) {
-      console.error("Delete error:", err);
-    }
-  };
-
-  /* ✅ Update (basic for now) */
-  const handleUpdate = (item: Product) => {
-    console.log("Update:", item);
-    setShowModal(true);
+    await API.delete(
+      `${process.env.REACT_APP_BASE_URL}/product/${id}`
+    );
+    fetchProducts();
   };
 
   return (
     <div className="page">
       <h1>Products</h1>
 
-      {/* ✅ PRODUCT LIST */}
-    <List
-      products={products}
-      handleUpdate={handleUpdate}
-      handleDelete={handleDelete}
-    />
+      <List
+        products={products}
+        handleUpdate={handleUpdate}
+        handleDelete={handleDelete}
+      />
 
-      {/* Add Button */}
       <button
-        className="btn primary"
+        className="btn primary add-product"
         onClick={() => setShowModal(true)}
       >
-        ➕ Add Product
+       Add Product
       </button>
 
-      {/* Modal */}
+      {/* ✅ ADD MODAL */}
       {showModal && (
         <Modal
+          title="Add Product"
           setShowModal={setShowModal}
           form={form}
-          setForm={setForm}
-          handleChange={handleChange}
-          handleImageChange={handleImageChange}
+          handleChange={(e) => handleChange(e, false)}
+          handleImageChange={(e) => handleImageChange(e, false)}
           handleSubmit={handleSubmit}
+          errors={errors}
+          preview={preview}
+        />
+      )}
+
+      {/* ✅ EDIT MODAL */}
+      {showEditModal && (
+        <Modal
+          title="Edit Product"
+          setShowModal={setShowEditModal}
+          form={editForm}
+          handleChange={(e) => handleChange(e, true)}
+          handleImageChange={(e) => handleImageChange(e, true)}
+          handleSubmit={handleEditSubmit}
           errors={errors}
           preview={preview}
         />

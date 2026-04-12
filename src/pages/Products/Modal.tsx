@@ -1,7 +1,7 @@
 import React from "react";
 
 /* ✅ Form Type */
-interface ProductForm {
+export interface ProductForm {
   name: string;
   quantity: string;
   price: string;
@@ -11,14 +11,14 @@ interface ProductForm {
   quantitySubcribed: string;
 }
 
-/* ✅ Error Type */
-type FormErrors = Partial<Record<keyof ProductForm, string>>;
+export type FormErrors = Partial<Record<keyof ProductForm, string>>;
 
 /* ✅ Props Type */
 interface ModalProps {
+  title: string; // ✅ ONLY HERE
+  submitLabel?: string;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   form: ProductForm;
-  setForm: React.Dispatch<React.SetStateAction<ProductForm>>;
   handleChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
@@ -38,6 +38,7 @@ const Modal: React.FC<ModalProps> = ({
   errors,
   preview,
 }) => {
+  
   return (
     <div className="modal" onClick={() => setShowModal(false)}>
       <div

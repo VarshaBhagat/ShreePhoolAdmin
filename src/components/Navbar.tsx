@@ -21,7 +21,7 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     padding: "15px 30px",
-    background: "#6a0dad",
+    background: "#6c5ce7",
     color: "white",
   },
 };
