@@ -3,6 +3,7 @@ import API from "../../services/api";
 import "./index.scss";
 import Modal from "./Modal";
 import List from "./List";
+import axios from "axios";
 
 /* ✅ Types */
 interface Product {
@@ -61,18 +62,27 @@ export default function Products() {
   const [preview, setPreview] = useState<string | null>(null);
   const [errors, setErrors] = useState<FormErrors>({});
 
-  /* ✅ Fetch */
-  const fetchProducts = async () => {
-    const res = await API.get<{ data: Product[] }>(
-      `${process.env.REACT_APP_BASE_URL}/products`
-    );
-    setProducts(res.data?.data);
-  };
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
 
+const fetchProducts = async () => {
+  try {
+    const res = await API.get("/products");
+    setProducts(res.data?.data || []);
+  } catch (error: any) {
+    if (axios.isAxiosError(error)) {
+      if (error.response?.status === 404) {
+        setProducts([]); // empty case
+      } else {
+        console.log("API ERROR ❌", error.response?.data);
+      }
+    } else {
+      console.log("UNKNOWN ERROR ❌", error);
+    }
+  }
+};
+useEffect(() => {
+  fetchProducts();
+}, []);
   /* ✅ Common Change */
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -137,7 +147,7 @@ export default function Products() {
     });
 
     await API.post(
-      `${process.env.REACT_APP_BASE_URL}/add-product`,
+      `/add-product`,
       formData
     );
 
@@ -193,7 +203,7 @@ export default function Products() {
     });
 
     await API.put(
-      `${process.env.REACT_APP_BASE_URL}/product/${editId}`,
+      `/product/${editId}`,
       formData
     );
 
@@ -204,7 +214,7 @@ export default function Products() {
   /* ✅ Delete */
   const handleDelete = async (id: string) => {
     await API.delete(
-      `${process.env.REACT_APP_BASE_URL}/product/${id}`
+      `/product/${id}`
     );
     fetchProducts();
   };
