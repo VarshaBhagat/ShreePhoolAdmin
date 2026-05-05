@@ -114,7 +114,7 @@ const Modal: React.FC<ModalProps> = ({
 
           {preview && (
             <div className="full">
-              <img src={preview} className="preview" />
+              <img src={preview} className="preview" alt="Preview" />
             </div>
           )}
 
