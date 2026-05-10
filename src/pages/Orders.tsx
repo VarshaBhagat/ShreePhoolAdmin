@@ -11,8 +11,17 @@ export default function Orders() {
       if (res.data && res.data.success) {
         setOrdersData(res.data.data);
       }
-    } catch (error) {
-      console.error("Failed to fetch tomorrow's orders", error);
+    } catch (error: any) {
+      const status = error.response?.status;
+      const errorMsg = error.response?.data?.message || error.message;
+      
+      if (status === 500) {
+        console.error("Server Error (500) fetching orders:", error.response?.data);
+        alert("Failed to load orders. Server error.");
+      } else {
+        console.error(`Failed to fetch tomorrow's orders (${status}):`, errorMsg);
+        alert(`Failed to load orders: ${errorMsg}`);
+      }
     }
   };
 

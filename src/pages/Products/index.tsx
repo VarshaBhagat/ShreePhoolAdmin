@@ -70,13 +70,21 @@ const fetchProducts = async () => {
     setProducts(res.data?.data || []);
   } catch (error: any) {
     if (axios.isAxiosError(error)) {
-      if (error.response?.status === 404) {
+      const status = error.response?.status;
+      const errorMsg = error.response?.data?.message || error.message;
+      
+      if (status === 404) {
         setProducts([]); // empty case
+      } else if (status === 500) {
+        console.error("Server Error (500):", error.response?.data);
+        alert("Server error occurred. Please try again later.");
       } else {
-        console.log("API ERROR ❌", error.response?.data);
+        console.error(`API Error (${status}):`, errorMsg);
+        alert(`Error: ${errorMsg}`);
       }
     } else {
-      console.log("UNKNOWN ERROR ❌", error);
+      console.error("Unknown Error:", error);
+      alert("An unexpected error occurred");
     }
   }
 };
@@ -136,35 +144,38 @@ useEffect(() => {
   const handleSubmit = async () => {
     if (!validate(form)) return;
 
-    const formData = new FormData();
+    try {
+      const formData = new FormData();
 
-    Object.entries(form).forEach(([key, value]) => {
-      if (key === "image" && value instanceof File) {
-        formData.append("image", value);
-      } else {
-        formData.append(key, String(value));
-      }
-    });
+      Object.entries(form).forEach(([key, value]) => {
+        if (key === "image" && value instanceof File) {
+          formData.append("image", value);
+        } else {
+          formData.append(key, String(value));
+        }
+      });
 
-    await API.post(
-      `/add-product`,
-      formData
-    );
+      await API.post(`/add-product`, formData);
 
-    setShowModal(false);
-    fetchProducts();
+      setShowModal(false);
+      fetchProducts();
 
-    setForm({
-      name: "",
-      quantity: "",
-      price: "",
-      description: "",
-      image: null,
-      isSubcibed: false,
-      quantitySubcribed: "",
-    });
+      setForm({
+        name: "",
+        quantity: "",
+        price: "",
+        description: "",
+        image: null,
+        isSubcibed: false,
+        quantitySubcribed: "",
+      });
 
-    setPreview(null);
+      setPreview(null);
+    } catch (error: any) {
+      const errorMsg = error.response?.data?.message || "Failed to add product";
+      console.error("Error adding product:", error.response?.data);
+      alert(errorMsg);
+    }
   };
 
   /* ✅ Edit Click */
@@ -192,31 +203,40 @@ useEffect(() => {
     if (!editId) return;
     if (!validate(editForm)) return;
 
-    const formData = new FormData();
+    try {
+      const formData = new FormData();
 
-    Object.entries(editForm).forEach(([key, value]) => {
-      if (key === "image" && value instanceof File) {
-        formData.append("image", value);
-      } else {
-        formData.append(key, String(value));
-      }
-    });
+      Object.entries(editForm).forEach(([key, value]) => {
+        if (key === "image" && value instanceof File) {
+          formData.append("image", value);
+        } else {
+          formData.append(key, String(value));
+        }
+      });
 
-    await API.put(
-      `/product/${editId}`,
-      formData
-    );
+      await API.put(`/product/${editId}`, formData);
 
-    setShowEditModal(false);
-    fetchProducts();
+      setShowEditModal(false);
+      fetchProducts();
+    } catch (error: any) {
+      const errorMsg = error.response?.data?.message || "Failed to update product";
+      console.error("Error updating product:", error.response?.data);
+      alert(errorMsg);
+    }
   };
 
   /* ✅ Delete */
   const handleDelete = async (id: string) => {
-    await API.delete(
-      `/product/${id}`
-    );
-    fetchProducts();
+    if (!window.confirm("Are you sure you want to delete this product?")) return;
+    
+    try {
+      await API.delete(`/product/${id}`);
+      fetchProducts();
+    } catch (error: any) {
+      const errorMsg = error.response?.data?.message || "Failed to delete product";
+      console.error("Error deleting product:", error.response?.data);
+      alert(errorMsg);
+    }
   };
 
   return (
