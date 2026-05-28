@@ -2,7 +2,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Products from "./pages/Products";
 import Orders from "./pages/Orders";
-import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import './index.css'
 import PrivacyPolicy from "./pages/PrivacyPolicy";
