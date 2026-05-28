@@ -5,12 +5,14 @@ import Orders from "./pages/Orders";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import './index.css'
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/adminProduct" element={<Products />} />
         <Route path="/adminOrders" element={<Orders />} />
       </Routes>
