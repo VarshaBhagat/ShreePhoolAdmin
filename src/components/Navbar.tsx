@@ -7,8 +7,8 @@ export default function Navbar() {
       <h2>🌸 ShreePhool Admin</h2>
 
       <div>
-        <Link to="/" style={styles.link}>Products</Link>
-        <Link to="/orders" style={{ ...styles.link, marginLeft: 20 }}>
+        <Link to="/adminProduct" style={styles.link}>Products</Link>
+        <Link to="/adminOrders" style={{ ...styles.link, marginLeft: 20 }}>
           Orders
         </Link>
       </div>

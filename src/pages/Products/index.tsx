@@ -4,6 +4,7 @@ import "./index.scss";
 import Modal from "./Modal";
 import List from "./List";
 import axios from "axios";
+import Navbar from "../../components/Navbar";
 
 /* ✅ Types */
 interface Product {
@@ -64,25 +65,25 @@ export default function Products() {
 
 
 
-const fetchProducts = async () => {
-  try {
-    const res = await API.get("/products");
-    setProducts(res.data?.data || []);
-  } catch (error: any) {
-    if (axios.isAxiosError(error)) {
-      if (error.response?.status === 404) {
-        setProducts([]); // empty case
+  const fetchProducts = async () => {
+    try {
+      const res = await API.get("/products");
+      setProducts(res.data?.data || []);
+    } catch (error: any) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 404) {
+          setProducts([]); // empty case
+        } else {
+          console.log("API ERROR ❌", error.response?.data);
+        }
       } else {
-        console.log("API ERROR ❌", error.response?.data);
+        console.log("UNKNOWN ERROR ❌", error);
       }
-    } else {
-      console.log("UNKNOWN ERROR ❌", error);
     }
-  }
-};
-useEffect(() => {
-  fetchProducts();
-}, []);
+  };
+  useEffect(() => {
+    fetchProducts();
+  }, []);
   /* ✅ Common Change */
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -220,49 +221,51 @@ useEffect(() => {
   };
 
   return (
-    <div className="page">
-      <h1>Products</h1>
+    <><Navbar />
+      <div className="page">
+        <h1>Products</h1>
 
-      <List
-        products={products}
-        handleUpdate={handleUpdate}
-        handleDelete={handleDelete}
-      />
-
-      <button
-        className="btn primary add-product"
-        onClick={() => setShowModal(true)}
-      >
-       Add Product
-      </button>
-
-      {/* ✅ ADD MODAL */}
-      {showModal && (
-        <Modal
-          title="Add Product"
-          setShowModal={setShowModal}
-          form={form}
-          handleChange={(e) => handleChange(e, false)}
-          handleImageChange={(e) => handleImageChange(e, false)}
-          handleSubmit={handleSubmit}
-          errors={errors}
-          preview={preview}
+        <List
+          products={products}
+          handleUpdate={handleUpdate}
+          handleDelete={handleDelete}
         />
-      )}
 
-      {/* ✅ EDIT MODAL */}
-      {showEditModal && (
-        <Modal
-          title="Edit Product"
-          setShowModal={setShowEditModal}
-          form={editForm}
-          handleChange={(e) => handleChange(e, true)}
-          handleImageChange={(e) => handleImageChange(e, true)}
-          handleSubmit={handleEditSubmit}
-          errors={errors}
-          preview={preview}
-        />
-      )}
-    </div>
+        <button
+          className="btn primary add-product"
+          onClick={() => setShowModal(true)}
+        >
+          Add Product
+        </button>
+
+        {/* ✅ ADD MODAL */}
+        {showModal && (
+          <Modal
+            title="Add Product"
+            setShowModal={setShowModal}
+            form={form}
+            handleChange={(e) => handleChange(e, false)}
+            handleImageChange={(e) => handleImageChange(e, false)}
+            handleSubmit={handleSubmit}
+            errors={errors}
+            preview={preview}
+          />
+        )}
+
+        {/* ✅ EDIT MODAL */}
+        {showEditModal && (
+          <Modal
+            title="Edit Product"
+            setShowModal={setShowEditModal}
+            form={editForm}
+            handleChange={(e) => handleChange(e, true)}
+            handleImageChange={(e) => handleImageChange(e, true)}
+            handleSubmit={handleEditSubmit}
+            errors={errors}
+            preview={preview}
+          />
+        )}
+      </div>
+    </>
   );
 }
