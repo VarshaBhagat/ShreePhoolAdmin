@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Navbar() {
   return (
     <div style={styles.nav}>
-      <h2>🌸 ShreePhool Admin</h2>
+      <h2>🌸 FrendRops Admin</h2>
 
       <div>
         <Link to="/adminProduct" style={styles.link}>Products</Link>
