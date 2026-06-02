@@ -1,5 +1,3 @@
-// src/pages/PrivacyPolicy.tsx
-
 import React from "react";
 
 const PrivacyPolicy: React.FC = () => {
@@ -13,7 +11,7 @@ const PrivacyPolicy: React.FC = () => {
           </h1>
 
           <p className="text-white/90 text-lg mt-4">
-            Last updated: 28/05/2026
+            Last updated: 02/06/2026
           </p>
         </div>
       </div>
@@ -29,7 +27,7 @@ const PrivacyPolicy: React.FC = () => {
             our website, mobile application, and services.
           </p>
 
-          {/* SECTION */}
+          {/* 1 */}
           <div>
             <h2 className="text-3xl font-bold text-[#2d1457]">
               1. Information We Collect
@@ -44,12 +42,12 @@ const PrivacyPolicy: React.FC = () => {
 
             <p className="text-gray-700 text-lg mt-4 leading-relaxed">
               We may also collect device information including browser type,
-              operating system, IP address, and cookies to improve our services
-              and user experience.
+              operating system, IP address, cookies, and usage analytics to
+              improve our services and user experience.
             </p>
           </div>
 
-          {/* SECTION */}
+          {/* 2 */}
           <div>
             <h2 className="text-3xl font-bold text-[#2d1457]">
               2. How We Use Your Information
@@ -57,8 +55,8 @@ const PrivacyPolicy: React.FC = () => {
 
             <p className="text-gray-700 text-lg mt-4 leading-relaxed">
               Your information is used to process orders, manage deliveries,
-              provide customer support, improve our platform, send updates, and
-              maintain account security.
+              provide customer support, improve our platform, send updates,
+              maintain account security, and comply with legal obligations.
             </p>
 
             <p className="text-gray-700 text-lg mt-4 leading-relaxed">
@@ -67,7 +65,7 @@ const PrivacyPolicy: React.FC = () => {
             </p>
           </div>
 
-          {/* SECTION */}
+          {/* 3 */}
           <div>
             <h2 className="text-3xl font-bold text-[#2d1457]">
               3. Sharing of Information
@@ -77,12 +75,12 @@ const PrivacyPolicy: React.FC = () => {
               We do not sell your personal information to third parties.
               However, we may share limited information with trusted partners
               such as payment gateways, delivery providers, analytics services,
-              and technical support providers to operate our business
-              effectively.
+              hosting providers, and technical support partners to operate our
+              business effectively.
             </p>
           </div>
 
-          {/* SECTION */}
+          {/* 4 */}
           <div>
             <h2 className="text-3xl font-bold text-[#2d1457]">
               4. Cookies and Tracking Technologies
@@ -100,26 +98,25 @@ const PrivacyPolicy: React.FC = () => {
             </p>
           </div>
 
-          {/* SECTION */}
+          {/* 5 */}
           <div>
             <h2 className="text-3xl font-bold text-[#2d1457]">
               5. Data Security
             </h2>
 
             <p className="text-gray-700 text-lg mt-4 leading-relaxed">
-              We implement appropriate security measures to protect your
-              personal data against unauthorized access, misuse, disclosure,
-              alteration, or destruction.
+              We implement reasonable technical and organizational security
+              measures to protect your personal data against unauthorized
+              access, misuse, disclosure, alteration, or destruction.
             </p>
 
             <p className="text-gray-700 text-lg mt-4 leading-relaxed">
-              While we strive to use commercially acceptable means to protect
-              your data, no electronic transmission or storage method is
-              completely secure.
+              While we strive to protect your information, no method of
+              electronic transmission or storage is completely secure.
             </p>
           </div>
 
-          {/* SECTION */}
+          {/* 6 */}
           <div>
             <h2 className="text-3xl font-bold text-[#2d1457]">
               6. User Accounts
@@ -132,7 +129,7 @@ const PrivacyPolicy: React.FC = () => {
             </p>
           </div>
 
-          {/* SECTION */}
+          {/* 7 */}
           <div>
             <h2 className="text-3xl font-bold text-[#2d1457]">
               7. Payment Information
@@ -140,12 +137,12 @@ const PrivacyPolicy: React.FC = () => {
 
             <p className="text-gray-700 text-lg mt-4 leading-relaxed">
               All online payments are processed securely through trusted payment
-              gateway providers. FrendRops does not directly store your debit
-              card, credit card, or banking details.
+              gateway providers such as Razorpay. FrendRops does not directly
+              store your debit card, credit card, UPI PIN, or banking details.
             </p>
           </div>
 
-          {/* SECTION */}
+          {/* 8 */}
           <div>
             <h2 className="text-3xl font-bold text-[#2d1457]">
               8. Third-Party Links
@@ -157,52 +154,97 @@ const PrivacyPolicy: React.FC = () => {
               content of such external platforms.
             </p>
           </div>
-
-          {/* SECTION */}
           <div>
             <h2 className="text-3xl font-bold text-[#2d1457]">
-              9. Children's Privacy
+              9. Your Rights
             </h2>
 
             <p className="text-gray-700 text-lg mt-4 leading-relaxed">
-              FrendRops services are not intended for children under the age of
-              13. We do not knowingly collect personal information from
-              children.
+              You have the right to access, update, modify, correct, or request
+              deletion of your personal information. You may also opt out of
+              promotional communications at any time.
             </p>
           </div>
 
-          {/* SECTION */}
+          {/* 11 */}
           <div>
             <h2 className="text-3xl font-bold text-[#2d1457]">
-              10. Your Rights
-            </h2>
-
-            <p className="text-gray-700 text-lg mt-4 leading-relaxed">
-              You have the right to access, update, modify, or request deletion
-              of your personal information. You may also opt out of marketing
-              communications at any time.
-            </p>
-          </div>
-
-          {/* SECTION */}
-          <div>
-            <h2 className="text-3xl font-bold text-[#2d1457]">
-              11. Changes to This Privacy Policy
+              10. Changes to This Privacy Policy
             </h2>
 
             <p className="text-gray-700 text-lg mt-4 leading-relaxed">
               We reserve the right to update or modify this Privacy Policy at
-              any time. Any changes will be posted on this page with an updated
-              revision date.
+              any time. Changes will become effective immediately upon posting
+              on this page.
             </p>
           </div>
 
-          <div className="bg-violet-50 rounded-2xl p-6">
-            <p className="text-[#2d1457] text-lg font-medium leading-relaxed">
-              By using FrendRops services, you agree to the terms outlined in
-              this Privacy Policy.
+          {/* 12 */}
+          <div>
+            <h2 className="text-3xl font-bold text-[#2d1457]">
+              11. Data Retention
+            </h2>
+
+            <p className="text-gray-700 text-lg mt-4 leading-relaxed">
+              We retain your personal information only for as long as necessary
+              to provide our services, comply with legal obligations, resolve
+              disputes, and enforce our agreements.
             </p>
           </div>
+
+          {/* 13 */}
+          <div>
+            <h2 className="text-3xl font-bold text-[#2d1457]">
+              12. Legal Compliance
+            </h2>
+
+            <p className="text-gray-700 text-lg mt-4 leading-relaxed">
+              FrendRops complies with applicable Indian laws relating to data
+              protection, electronic transactions, and consumer rights.
+            </p>
+          </div>
+
+          {/* 14 */}
+          <div>
+            <h2 className="text-3xl font-bold text-[#2d1457]">
+              13. Contact Us
+            </h2>
+
+            <p className="text-gray-700 text-lg mt-4 leading-relaxed">
+              If you have any questions regarding this Privacy Policy or your
+              personal information, please contact us:
+            </p>
+
+            <div className="mt-4 text-gray-700 text-lg space-y-2">
+              <p><strong>FrendRops</strong></p>
+              <p>Email: fernanddroops@gmail.com</p>
+              <p>Website: https://www.frendrops.in</p>
+              <p>Bengaluru, Karnataka, India</p>
+            </div>
+          </div>
+
+          {/* 15 */}
+          <div>
+            <h2 className="text-3xl font-bold text-[#2d1457]">
+              14. Consent
+            </h2>
+
+            <p className="text-gray-700 text-lg mt-4 leading-relaxed">
+              By accessing or using FrendRops, you consent to the collection,
+              storage, and use of your information as described in this Privacy
+              Policy.
+            </p>
+          </div>
+
+          {/* FOOTER BOX */}
+          <div className="bg-violet-50 rounded-2xl p-6 border border-violet-100">
+            <p className="text-[#2d1457] text-lg font-medium leading-relaxed">
+              By using FrendRops services, website, or mobile application, you
+              acknowledge that you have read and understood this Privacy Policy
+              and agree to its terms.
+            </p>
+          </div>
+
         </div>
       </div>
     </div>
