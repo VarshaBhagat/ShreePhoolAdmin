@@ -82,7 +82,7 @@ export default function Home() {
             "@type": "LocalBusiness",
             name: "FrendRops",
             telephone: "+91 8050515079",
-            email: "support@frendrops.in",
+            email: "fernanddroops@gmail.com",
             address: {
               "@type": "PostalAddress",
               addressLocality: "Bangalore",
@@ -716,7 +716,7 @@ export default function Home() {
 
                 <div className="flex items-center gap-3">
                   <Mail size={20} />
-                  <span>support@frendrops.in</span>
+                  <span>fernanddroops@gmail.com</span>
                 </div>
 
                 <div className="flex items-center gap-3">
