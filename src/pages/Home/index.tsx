@@ -1,5 +1,14 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
+import garlannd from "../../assets/garland.jpeg";
+import freshFlower from "../../assets/merigold.jpeg";  
+import pujaItem from "../../assets/pujaItem.jpeg";
+import chandu from "../../assets/chandu.jpeg";
+import ganeri from "../../assets/Ganeri.jpeg";  
+import sugandharaja from "../../assets/Sugandharaja.jpeg"; 
+import freshFlowers from "../../assets/freshFlower.jpeg";
+import appIcon from "../../assets/appIcon.png";
+
 import {
   Clock3,
   Flower2,
@@ -17,35 +26,34 @@ export default function Home() {
     {
       title: "Fresh Flowers",
       image:
-        "https://images.unsplash.com/photo-1520763185298-1b434c919102?q=80&w=1200&auto=format&fit=crop",
+        freshFlower,
     },
     {
       title: "Puja Items",
       image:
-        "https://images.unsplash.com/photo-1604608672516-f1b8f87c2d5b?q=80&w=1200&auto=format&fit=crop",
+        pujaItem,
     },
     {
       title: "Temple Garland",
-      image:
-        "https://images.unsplash.com/photo-1616587226960-4a03badbe8bf?q=80&w=1200&auto=format&fit=crop",
+      image: garlannd,
     },
   ];
 
   const products = [
     {
-      name: "Rose Garland",
+      name: "Sugandharaja",
       image:
-        "https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?q=80&w=1200&auto=format&fit=crop",
+       sugandharaja,
     },
     {
-      name: "Morning Puja Kit",
+      name: "Chandu Flowers",
       image:
-        "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=1200&auto=format&fit=crop",
+        chandu,
     },
     {
-      name: "Jasmine Flowers",
+      name: "Ganeri Flowers",
       image:
-        "https://images.unsplash.com/photo-1468327768560-75b778cbb551?q=80&w=1200&auto=format&fit=crop",
+        ganeri,
     },
   ];
 
@@ -97,7 +105,8 @@ export default function Home() {
         <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-violet-700 to-purple-500 shadow-xl">
           <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
             <div className="text-white text-3xl md:text-4xl font-bold">
-              🌸 FrendRops
+              <img src={appIcon} alt="App Icon" className="w-12 h-12 inline-block mr-3" />
+              FrendRops
             </div>
 
             <div className="hidden md:flex gap-8 text-white text-lg font-medium">
@@ -130,7 +139,7 @@ export default function Home() {
           className="relative min-h-screen flex items-center"
         >
           <img
-            src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=1600&auto=format&fit=crop"
+            src={freshFlowers}
             alt="Fresh Flower Delivery Bangalore"
             className="absolute inset-0 w-full h-full object-cover"
           />
