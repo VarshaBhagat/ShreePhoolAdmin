@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import './index.css'
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsConditions from "./pages/TermsConditions";
+import ProductList from "./pages/ProductList";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         />
         <Route path="/adminProduct" element={<Products />} />
         <Route path="/adminOrders" element={<Orders />} />
+         <Route path="/productList" element={<ProductList />} />
       </Routes>
     </BrowserRouter>
   );
