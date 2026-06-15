@@ -208,7 +208,7 @@ export default function Home() {
         </section>
 
         {/* FEATURES */}
-        <section className="-mt-16 relative z-20 max-w-7xl mx-auto px-6">
+        <section className="mt-4 relative z-20 max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-6">
             <div className="bg-pink-50 rounded-[30px] p-8 shadow-lg">
               <div className="w-20 h-20 rounded-full bg-pink-100 flex items-center justify-center">
