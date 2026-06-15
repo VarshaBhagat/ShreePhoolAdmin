@@ -146,7 +146,7 @@ export default function Home() {
 
           <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-black/20" />
 
-          <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+          <div className="mt-24 mb-12 relative z-10 max-w-7xl mx-auto px-6 w-full">
             <div className="max-w-3xl">
               <span className="inline-block bg-violet-100 text-violet-700 px-4 py-2 rounded-full font-semibold mb-5">
                 🌸 Bangalore's Trusted Flower Delivery Service
