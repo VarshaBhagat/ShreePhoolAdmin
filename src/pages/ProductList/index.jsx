@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Search } from "lucide-react";
 import { getProducts } from "./api/products";
+import { addToCart } from "./api/cart";
 
 export default function ProductList() {
   const [products, setProducts] = useState([]);
@@ -12,7 +13,23 @@ export default function ProductList() {
     setProducts(data);
     setFilteredProducts(data);
   };
+  
+ const handleAddToCart = async (product) => {
+  try {
+    const { data } = await addToCart(product._id, 1);
 
+    if (data.success) {
+      alert("Added to cart successfully");
+    }
+  } catch (error) {
+    console.error(error);
+
+    alert(
+      error?.response?.data?.message ||
+      "Failed to add product to cart"
+    );
+  }
+};
   useEffect(() => {
     loadProducts();
   }, []);
@@ -85,7 +102,9 @@ export default function ProductList() {
                     ₹{product.price}
                     </span>
 
-                    <button className="bg-gradient-to-r from-purple-700 to-purple-500 text-white px-7 py-3 rounded-full font-medium text-lg hover:shadow-lg transition">
+                    <button className="bg-gradient-to-r from-purple-700 to-purple-500 text-white px-7 py-3 rounded-full font-medium text-lg hover:shadow-lg transition"
+                    onClick={() => handleAddToCart(product)}
+                    >
                     Add
                     </button>
                 </div>
