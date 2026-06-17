@@ -8,6 +8,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsConditions from "./pages/TermsConditions";
 import ProductList from "./pages/ProductList";
 import Login from "./pages/Login";
+import ProductDetails from "./pages/ProductDetails";
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
         <Route
           path="/login"
           element={<Login />}
+        />
+        <Route
+          path="/product/:productId"
+          element={<ProductDetails />}
         />
       </Routes>
     </BrowserRouter>

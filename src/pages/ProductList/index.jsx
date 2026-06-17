@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Search } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { getProducts } from "./api/products";
 import { addToCart } from "./api/cart";
 
 export default function ProductList() {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [search, setSearch] = useState("");
@@ -80,6 +82,7 @@ export default function ProductList() {
             {filteredProducts.map((product) => (
             <div
                 key={product._id}
+                onClick={() => navigate(`/product/${product._id}`)}
                 className="bg-white rounded-[32px] p-5 shadow-lg hover:-translate-y-1 transition duration-300 h-full flex flex-col"
             >
                 <img
