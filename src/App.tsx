@@ -9,6 +9,8 @@ import TermsConditions from "./pages/TermsConditions";
 import ProductList from "./pages/ProductList";
 import Login from "./pages/Login";
 import ProductDetails from "./pages/ProductDetails";
+import Profile from "./pages/Profile";
+import ContactUs from "./pages/ContactUs";
 
 function App() {
   return (
@@ -30,8 +32,18 @@ function App() {
         <Route
           path="/product/:productId"
           element={<ProductDetails />}
+
         />
-      </Routes>
+        <Route
+            path="/profile"
+            element={<Profile />}
+          />
+
+          <Route
+            path="/contact"
+            element={<ContactUs />}
+          />
+        </Routes>
     </BrowserRouter>
   );
 }
