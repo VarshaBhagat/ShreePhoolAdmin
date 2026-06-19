@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import ProductDetails from "./pages/ProductDetails";
 import Profile from "./pages/Profile";
 import ContactUs from "./pages/ContactUs";
+import BasketPage from "./pages/BasketPage";
 
 function App() {
   return (
@@ -35,15 +36,19 @@ function App() {
 
         />
         <Route
-            path="/profile"
-            element={<Profile />}
-          />
+          path="/profile"
+          element={<Profile />}
+        />
 
-          <Route
-            path="/contact"
-            element={<ContactUs />}
-          />
-        </Routes>
+        <Route
+          path="/contact"
+          element={<ContactUs />}
+        />
+        <Route
+          path="/basket"
+          element={<BasketPage />}
+        />
+      </Routes>
     </BrowserRouter>
   );
 }
