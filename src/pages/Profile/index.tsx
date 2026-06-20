@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import {
     User,
-    Phone,
-    Mail,
-    Calendar,
     Headphones,
     Trash2,
     LogOut,
