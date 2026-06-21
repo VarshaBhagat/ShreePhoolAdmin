@@ -13,6 +13,7 @@ import ContactUs from "./pages/ContactUs";
 import BasketPage from "./pages/BasketPage";
 import ProtectedRoute from "./ProtectedRoute";
 import NotFound from "./pages/NotFound";
+import Wallet from "./pages/Wallet";
 import "./index.css";
 
 function App() {
@@ -64,14 +65,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-        {/* <Route
-          path="/add-money"
-          element={
-            <ProtectedRoute>
-              <AddMoney />
-            </ProtectedRoute>
-          }
-        /> */}
+        <Route path="/wallet" element={<Wallet />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
