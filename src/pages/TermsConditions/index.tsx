@@ -255,7 +255,7 @@ const TermsConditions: React.FC = () => {
               <p>
                 <strong>FrendRops</strong>
               </p>
-              <p>Email: fernanddroops@gmail.com</p>
+              <p>Email: frendrops@gmail.com</p>
               <p>Website: https://www.frendrops.in</p>
               <p>Bengaluru, Karnataka, India</p>
             </div>
