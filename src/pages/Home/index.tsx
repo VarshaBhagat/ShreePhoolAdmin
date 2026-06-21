@@ -7,8 +7,7 @@ import chandu from "../../assets/chandu.jpeg";
 import ganeri from "../../assets/Ganeri.jpeg";  
 import sugandharaja from "../../assets/Sugandharaja.jpeg"; 
 import freshFlowers from "../../assets/freshFlower.jpeg";
-import appIcon from "../../assets/appIcon.png";
-
+import UserNavbar from "../../components/UserNavbar";
 import {
   Clock3,
   Flower2,
@@ -99,39 +98,9 @@ export default function Home() {
           })}
         </script>
       </Helmet>
-
+                  <UserNavbar />
       <div className="bg-[#fffdfb] min-h-screen overflow-hidden">
-        {/* NAVBAR */}
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-violet-700 to-purple-500 shadow-xl">
-          <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-            <div className="text-white text-3xl md:text-4xl font-bold">
-              <img src={appIcon} alt="App Icon" className="w-12 h-12 inline-block mr-3" />
-              FrendRops
-            </div>
 
-            <div className="hidden md:flex gap-8 text-white text-lg font-medium">
-              <a href="#home" className="hover:text-pink-200">
-                Home
-              </a>
-
-              <a href="#categories" className="hover:text-pink-200">
-                Categories
-              </a>
-
-              <a href="#products" className="hover:text-pink-200">
-                Products
-              </a>
-
-              <a href="#faq" className="hover:text-pink-200">
-                FAQ
-              </a>
-
-              <a href="#contact" className="hover:text-pink-200">
-                Contact
-              </a>
-            </div>
-          </div>
-        </nav>
 
         {/* HERO SECTION */}
         <section
@@ -146,7 +115,7 @@ export default function Home() {
 
           <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-black/20" />
 
-          <div className="mt-24 mb-12 relative z-10 max-w-7xl mx-auto px-6 w-full">
+          <div className="mt-8 mb-12 relative z-10 max-w-7xl mx-auto px-6 w-full">
             <div className="max-w-3xl">
               <span className="inline-block bg-violet-100 text-violet-700 px-4 py-2 rounded-full font-semibold mb-5">
                 🌸 Bangalore's Trusted Flower Delivery Service
@@ -166,13 +135,12 @@ export default function Home() {
               </p>
 
               <div className="flex flex-wrap gap-4 mt-10">
-                {/* <a
-                  href="/products"
+                <a
+                  href="/productList"
                   className="bg-violet-700 hover:bg-violet-800 text-white px-8 py-4 rounded-xl text-lg font-semibold transition"
                 >
                   Shop Now
-                </a> */}
-
+                </a>
                 <a
                   href="tel:+918050515079"
                   className="bg-white border-2 border-violet-700 text-violet-700 px-8 py-4 rounded-xl text-lg font-semibold transition"

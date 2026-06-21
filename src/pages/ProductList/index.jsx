@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import UserNavbar from "../../components/UserNavbar";
 import { getProducts } from "./api/products";
 import { addToCart } from "./api/cart";
 
@@ -49,17 +50,7 @@ export default function ProductList() {
   return (
     <div className="min-h-screen bg-purple-50">
       {/* Hero */}
-      <section className="bg-gradient-to-r from-purple-700 to-purple-500 py-20">
-        <div className="max-w-7xl mx-auto px-6 text-white">
-          <h1 className="text-5xl font-bold mb-4">
-            Fresh Flowers and Puja Item Collection 
-          </h1>
-
-          <p className="text-xl opacity-90">
-            Daily Morning Flower Delivery Across Bangalore
-          </p>
-        </div>
-      </section>
+      <UserNavbar />
 
       {/* Search */}
       <div className="max-w-7xl mx-auto px-6 py-10">

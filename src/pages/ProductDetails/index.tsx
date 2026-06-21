@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import SubscriptionModal from "./SubscriptionModal";
+import UserNavbar from "../../components/UserNavbar";
 
 interface Product {
     _id?: string;
@@ -110,121 +111,122 @@ export default function ProductDetails() {
         "https://via.placeholder.com/600x400";
 
     return (
-        <div className="min-h-screen bg-violet-50 py-8 px-4">
-            <div className="mx-auto max-w-4xl">
+        <>
+            <UserNavbar />
+            <div className="min-h-screen bg-violet-50 py-28 px-4">
+                <div className="mx-auto max-w-4xl">
+                    <button
+                        onClick={() => navigate(-1)}
+                        className="mb-6 flex items-center gap-2 text-violet-600 font-medium hover:text-violet-700"
+                    >
+                        ← Back
+                    </button>
 
-                {/* Back Button */}
-                <button
-                    onClick={() => navigate(-1)}
-                    className="mb-6 flex items-center gap-2 text-violet-600 font-medium hover:text-violet-700"
-                >
-                    ← Back
-                </button>
+                    <div className="overflow-hidden rounded-3xl bg-white shadow-sm">
 
-                <div className="overflow-hidden rounded-3xl bg-white shadow-sm">
+                        {/* Product Image */}
+                        <img
+                            src={image}
+                            alt={product.name}
+                            className="h-[400px] w-full object-cover"
+                        />
 
-                    {/* Product Image */}
-                    <img
-                        src={image}
-                        alt={product.name}
-                        className="h-[400px] w-full object-cover"
-                    />
+                        <div className="p-6">
 
-                    <div className="p-6">
+                            {/* Product Name */}
+                            <h1 className="text-4xl font-bold text-slate-900">
+                                {product.name}
+                            </h1>
 
-                        {/* Product Name */}
-                        <h1 className="text-4xl font-bold text-slate-900">
-                            {product.name}
-                        </h1>
-
-                        {/* Price */}
-                        <div className="mt-3 text-3xl font-bold text-violet-600">
-                            ₹{product.price}
-                        </div>
-
-                        {/* Weight */}
-                        {(product.weight || product.qty) && (
-                            <div className="mt-2 text-slate-500">
-                                {product.weight || product.qty}
+                            {/* Price */}
+                            <div className="mt-3 text-3xl font-bold text-violet-600">
+                                ₹{product.price}
                             </div>
-                        )}
 
-                        {/* Description */}
-                        {product.description && (
-                            <p className="mt-5 leading-7 text-slate-700">
-                                {product.description}
-                            </p>
-                        )}
+                            {/* Weight */}
+                            {(product.weight || product.qty) && (
+                                <div className="mt-2 text-slate-500">
+                                    {product.weight || product.qty}
+                                </div>
+                            )}
 
-                        {/* Subscription Banner */}
-                        {isSubscribed && (
-                            <div className="mt-6 flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-500 to-purple-600 px-4 py-3 text-white">
-                                <span>✅</span>
-                                <span>
-                                    You're subscribed — Daily Plan
-                                </span>
-                            </div>
-                        )}
+                            {/* Description */}
+                            {product.description && (
+                                <p className="mt-5 leading-7 text-slate-700">
+                                    {product.description}
+                                </p>
+                            )}
 
-                        {/* Subscribe Button */}
-                        <button
-                            onClick={() => setShowSubscription(true)}
-                            className={`mt-6 w-full rounded-xl py-4 font-semibold transition ${isSubscribed
-                                ? "border-2 border-violet-600 bg-white text-violet-600"
-                                : "bg-violet-600 text-white hover:bg-violet-700"
-                                }`}
-                        >
-                            {isSubscribed
-                                ? "📅 Change Plan"
-                                : "📅 Subscribe"}
-                        </button>
+                            {/* Subscription Banner */}
+                            {isSubscribed && (
+                                <div className="mt-6 flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-500 to-purple-600 px-4 py-3 text-white">
+                                    <span>✅</span>
+                                    <span>
+                                        You're subscribed — Daily Plan
+                                    </span>
+                                </div>
+                            )}
 
-                        {/* Cart Section */}
-                        <div className="mt-6 flex items-center justify-between rounded-2xl bg-slate-50 p-4">
-                            <span className="font-medium text-slate-700">
-                                Add to tomorrow's order
-                            </span>
+                            {/* Subscribe Button */}
+                            <button
+                                onClick={() => setShowSubscription(true)}
+                                className={`mt-6 w-full rounded-xl py-4 font-semibold transition ${isSubscribed
+                                    ? "border-2 border-violet-600 bg-white text-violet-600"
+                                    : "bg-violet-600 text-white hover:bg-violet-700"
+                                    }`}
+                            >
+                                {isSubscribed
+                                    ? "📅 Change Plan"
+                                    : "📅 Subscribe"}
+                            </button>
 
-                            <div className="flex overflow-hidden rounded-xl bg-gradient-to-r from-violet-500 to-purple-600 text-white">
-                                <button
-                                    onClick={decreaseQty}
-                                    className="px-4 py-2 text-xl hover:bg-white/10"
-                                >
-                                    −
-                                </button>
-
-                                <span className="flex min-w-[50px] items-center justify-center font-semibold">
-                                    {quantity}
+                            {/* Cart Section */}
+                            <div className="mt-6 flex items-center justify-between rounded-2xl bg-slate-50 p-4">
+                                <span className="font-medium text-slate-700">
+                                    Add to tomorrow's order
                                 </span>
 
-                                <button
-                                    onClick={increaseQty}
-                                    className="px-4 py-2 text-xl hover:bg-white/10"
-                                >
-                                    +
-                                </button>
-                            </div>
-                        </div>
+                                <div className="flex overflow-hidden rounded-xl bg-gradient-to-r from-violet-500 to-purple-600 text-white">
+                                    <button
+                                        onClick={decreaseQty}
+                                        className="px-4 py-2 text-xl hover:bg-white/10"
+                                    >
+                                        −
+                                    </button>
 
+                                    <span className="flex min-w-[50px] items-center justify-center font-semibold">
+                                        {quantity}
+                                    </span>
+
+                                    <button
+                                        onClick={increaseQty}
+                                        className="px-4 py-2 text-xl hover:bg-white/10"
+                                    >
+                                        +
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
+                {showSubscription && product && (
+                    <SubscriptionModal
+                        product={{
+                            _id: product._id || product.id || "",
+                            name: product.name,
+                            image:
+                                product.image ||
+                                product.image_url ||
+                                "",
+                            price: product.price,
+                        }}
+                        onClose={() =>
+                            setShowSubscription(false)
+                        }
+                    />
+                )}
             </div>
-            {showSubscription && product && (
-                <SubscriptionModal
-                    product={{
-                        _id: product._id || product.id || "",
-                        name: product.name,
-                        image:
-                            product.image ||
-                            product.image_url ||
-                            "",
-                        price: product.price,
-                    }}
-                    onClose={() =>
-                        setShowSubscription(false)
-                    }
-                />
-            )}
-        </div>
+        </>
     );
 }

@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 
 import axios from "axios";
+import UserNavbar from "../../components/UserNavbar";
 
 interface BasketItem {
   id: string;
@@ -101,11 +102,10 @@ export default function BasketPage() {
   }
 
   return (
-    <div className="bg-slate-50 min-h-screen">
+    <>
+     <UserNavbar />
+    <div className="bg-slate-50 pt-4 min-h-screen">
       <div className="max-w-6xl mx-auto p-4 lg:p-8">
-
-        {/* Header */}
-
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
             <Calendar className="text-violet-600" />
@@ -284,5 +284,6 @@ export default function BasketPage() {
 
       </div>
     </div>
+    </>
   );
 }
