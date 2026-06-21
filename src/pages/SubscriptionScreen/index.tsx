@@ -21,7 +21,6 @@ interface Props {
   onClose?: () => void;
 }
 
-const API_URL = "http://187.127.165.63:5000/api";
 
 const weekDays = [
   { label: "Mon", value: "mon" },
@@ -102,7 +101,7 @@ export default function SubscriptionScreen({
       }
 
       const { data } = await axios.post(
-        `${API_URL}/subscribe-product`,
+        `${process.env.REACT_APP_BASE_URL}subscribe-product`,
         payload,
         {
           headers: {

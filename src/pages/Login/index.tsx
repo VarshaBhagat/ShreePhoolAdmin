@@ -10,7 +10,6 @@ import {
 import { auth } from "./firebase";
 
 export default function Login() {
-  const API_URL = "http://187.127.165.63:5000/api";
 
   const navigate = useNavigate();
 
@@ -106,7 +105,7 @@ export default function Login() {
         await result.user.getIdToken();
 
       const response = await axios.post(
-        `${API_URL}/login`,
+        `${process.env.REACT_APP_BASE_URL}login`,
         {
           firebase_token: firebaseToken,
           phone_prefix: "+91",

@@ -17,8 +17,6 @@ interface Product {
     is_subscribed?: boolean;
 }
 
-const API_BASE_URL = "http://187.127.165.63:5000/api";
-
 export default function ProductDetails() {
     const [showSubscription, setShowSubscription] = useState(false);
     const { productId } = useParams();
@@ -40,7 +38,7 @@ export default function ProductDetails() {
             setLoading(true);
 
             const response = await axios.get(
-                `${API_BASE_URL}/product/${productId}`
+                `${process.env.REACT_APP_BASE_URL}product/${productId}`
             );
 
             const data =
@@ -62,7 +60,7 @@ export default function ProductDetails() {
         setQuantity(qty);
 
         try {
-            await axios.post(`${API_BASE_URL}/basket/add`, {
+            await axios.post(`${process.env.REACT_APP_BASE_URL}basket/add`, {
                 productId,
                 quantity: qty,
                 isTomorrow: true,
@@ -79,7 +77,7 @@ export default function ProductDetails() {
         setQuantity(qty);
 
         try {
-            await axios.post(`${API_BASE_URL}/basket/update`, {
+            await axios.post(`${process.env.REACT_APP_BASE_URL}basket/update`, {
                 productId,
                 quantity: qty,
                 isTomorrow: true,

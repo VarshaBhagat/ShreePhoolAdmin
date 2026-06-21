@@ -38,7 +38,7 @@ export default function BasketPage() {
 
       const token = localStorage.getItem("token");
 
-      const { data } = await axios.get("http://187.127.165.63:5000/api/basket", {
+      const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}basket`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -73,7 +73,7 @@ export default function BasketPage() {
     quantity: number
   ) => {
     try {
-      await axios.put(`http://187.127.165.63:5000/api/basket/update-quantity/${id}`, {
+      await axios.put(`${process.env.REACT_APP_BASE_URL}basket/update-quantity/${id}`, {
         quantity,
       });
 
@@ -85,7 +85,7 @@ export default function BasketPage() {
 
   const removeItem = async (id: string) => {
     try {
-      await axios.delete(`http://187.127.165.63:5000/api/basket/${id}`);
+      await axios.delete(`${process.env.REACT_APP_BASE_URL}basket/${id}`);
 
       fetchBasket();
     } catch (error) {

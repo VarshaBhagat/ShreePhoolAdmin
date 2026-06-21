@@ -89,7 +89,7 @@ export default function SubscriptionModal({
         localStorage.getItem("token");
 
       const { data } = await axios.post(
-        `http://187.127.165.63:5000/api/subscribe-product`,
+        `${process.env.REACT_APP_BASE_URL}subscribe-product`,
         payload,
         {
           headers: {
