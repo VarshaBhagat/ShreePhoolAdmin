@@ -2,6 +2,7 @@ import React from "react";
 
 /* ✅ Form Type */
 export interface ProductForm {
+  order_closing_time: string | number | readonly string[] | undefined;
   name: string;
   quantity: string;
   price: string;
@@ -110,6 +111,15 @@ const Modal: React.FC<ModalProps> = ({
             {errors.description && (
               <p className="error">{errors.description}</p>
             )}
+          </div>
+          <div>
+            <input
+              name="order_closing_time"
+              type="string"
+              placeholder="Order Closing Time"
+              value={form.order_closing_time}
+              onChange={handleChange}
+            />
           </div>
 
           {preview && (

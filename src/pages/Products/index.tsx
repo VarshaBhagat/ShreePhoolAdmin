@@ -16,6 +16,7 @@ interface Product {
   image?: string;
   isSubcibed: boolean;
   quantitySubcribed?: number;
+  order_closing_time?: string | number | readonly string[] | undefined;
 }
 
 export interface ProductForm {
@@ -24,6 +25,7 @@ export interface ProductForm {
   price: string;
   description: string;
   image: File | null;
+  order_closing_time: string | number | readonly string[] | undefined;
   isSubcibed: boolean;
   quantitySubcribed: string;
 }
@@ -48,6 +50,7 @@ export default function Products() {
     image: null,
     isSubcibed: false,
     quantitySubcribed: "",
+    order_closing_time: "",
   });
 
   const [editForm, setEditForm] = useState<ProductForm>({
@@ -58,6 +61,7 @@ export default function Products() {
     image: null,
     isSubcibed: false,
     quantitySubcribed: "",
+    order_closing_time: "",
   });
 
   const [preview, setPreview] = useState<string | null>(null);
@@ -163,6 +167,7 @@ export default function Products() {
       image: null,
       isSubcibed: false,
       quantitySubcribed: "",
+      order_closing_time: "",
     });
 
     setPreview(null);
@@ -182,6 +187,7 @@ export default function Products() {
       quantitySubcribed: item.quantitySubcribed
         ? String(item.quantitySubcribed)
         : "",
+        order_closing_time: item.order_closing_time || "",
     });
 
     setPreview(item.image || null);
