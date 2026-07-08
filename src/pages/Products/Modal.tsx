@@ -117,7 +117,7 @@ const Modal: React.FC<ModalProps> = ({
               name="order_closing_time"
               type="string"
               placeholder="Order Closing Time"
-              value={form.order_closing_time}
+              value={form.order_closing_time || "18:00"}
               onChange={handleChange}
             />
           </div>
