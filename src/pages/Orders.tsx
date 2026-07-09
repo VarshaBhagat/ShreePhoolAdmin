@@ -46,11 +46,14 @@ export default function Orders() {
               )}
               <div>
                 <h3>{order.product_name}</h3>
+                {order.product_name.toLowerCase().includes("flower") && (
+                  <p><strong>Weight:</strong> {order.quantity * 10}g / packet</p>
+                )}
                 <p><strong>Order ID:</strong> {order.order_id}</p>
                 <p><strong>Phone:</strong> {order.phone_number}</p>
-                <p>
-                  <strong>Price:</strong> ₹{order.price} | <strong>Qty:</strong> {order.quantity} | <strong>Total:</strong> ₹{order.total_price}
-                </p>
+                <p><strong>Customer:</strong> {order.user_name}</p>
+                <p><strong>Phone:</strong> {order.phone_prefix} {order.phone_number}</p>
+                <p><strong>Address:</strong> {order.address}</p>
                 <p><strong>Type:</strong> {order.type}</p>
               </div>
             </div>

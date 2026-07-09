@@ -1,11 +1,11 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import garlannd from "../../assets/garland.jpeg";
-import freshFlower from "../../assets/merigold.jpeg";  
+import freshFlower from "../../assets/merigold.jpeg";
 import pujaItem from "../../assets/pujaItem.jpeg";
 import chandu from "../../assets/chandu.jpeg";
-import ganeri from "../../assets/Ganeri.jpeg";  
-import sugandharaja from "../../assets/Sugandharaja.jpeg"; 
+import ganeri from "../../assets/Ganeri.jpeg";
+import sugandharaja from "../../assets/Sugandharaja.jpeg";
 import freshFlowers from "../../assets/freshFlower.jpeg";
 import UserNavbar from "../../components/UserNavbar";
 import {
@@ -42,7 +42,7 @@ export default function Home() {
     {
       name: "Sugandharaja",
       image:
-       sugandharaja,
+        sugandharaja,
     },
     {
       name: "Chandu Flowers",
@@ -55,6 +55,43 @@ export default function Home() {
         ganeri,
     },
   ];
+
+  const handleShopNow = () => {
+    const ua = navigator.userAgent;
+
+    // Android
+    if (/Android/i.test(ua)) {
+      window.open(
+        "https://play.google.com/store/apps/details?id=com.frendrops&hl=en_IN",
+        "_blank"
+      );
+      return;
+    }
+
+    // iPhone / iPad
+    if (/iPhone|iPad|iPod/i.test(ua)) {
+      window.open(
+        "https://apps.apple.com/us/app/frendrops/id6782789369",
+        "_blank"
+      );
+      return;
+    }
+
+    // macOS (Safari, Chrome, Firefox)
+    if (/Macintosh|Mac OS X/i.test(ua)) {
+      window.open(
+        "https://apps.apple.com/us/app/frendrops/id6782789369",
+        "_blank"
+      );
+      return;
+    }
+
+    // Windows / Linux / Others
+    window.open(
+      "https://play.google.com/store/apps/details?id=com.frendrops&hl=en_IN",
+      "_blank"
+    );
+  };
 
   return (
     <>
@@ -98,7 +135,7 @@ export default function Home() {
           })}
         </script>
       </Helmet>
-                  <UserNavbar />
+      <UserNavbar />
       <div className="bg-[#fffdfb] min-h-screen overflow-hidden">
 
 
@@ -135,18 +172,18 @@ export default function Home() {
               </p>
 
               <div className="flex flex-wrap gap-4 mt-10">
-                <a
-                  href="/productList"
+                <button
+                  onClick={handleShopNow}
                   className="bg-violet-700 hover:bg-violet-800 text-white px-8 py-4 rounded-xl text-lg font-semibold transition"
                 >
                   Shop Now
-                </a>
-                <a
-                  href="tel:+918050515079"
+                </button>
+                <button
+                  onClick={() => window.open("tel:+918050515079", "_blank")}
                   className="bg-white border-2 border-violet-700 text-violet-700 px-8 py-4 rounded-xl text-lg font-semibold transition"
                 >
                   Call Now
-                </a>
+                </button>
               </div>
 
               <div className="flex flex-wrap gap-8 mt-12">
@@ -237,7 +274,7 @@ export default function Home() {
         </section>
 
         {/* PART 2 STARTS HERE */}
-                {/* CATEGORIES */}
+        {/* CATEGORIES */}
         <section
           id="categories"
           className="max-w-7xl mx-auto px-6 py-24"
@@ -508,7 +545,7 @@ export default function Home() {
         </section>
 
         {/* PART 3 STARTS HERE */}
-                {/* FAQ SECTION */}
+        {/* FAQ SECTION */}
         <section
           id="faq"
           className="max-w-7xl mx-auto px-6 py-24"
@@ -582,19 +619,19 @@ export default function Home() {
               </p>
 
               <div className="flex flex-wrap gap-4 mt-8">
-                {/* <a
-                  href="/products"
+                <button
+                  onClick={handleShopNow}
                   className="bg-white text-violet-700 px-8 py-4 rounded-xl font-semibold"
                 >
                   Shop Now
-                </a> */}
+                </button>
 
-                <a
-                  href="tel:+918050515079"
+                <button
+                  onClick={() => window.open("tel:+918050515079", "_blank")}
                   className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold"
                 >
                   Call Us
-                </a>
+                </button>
               </div>
             </div>
 
