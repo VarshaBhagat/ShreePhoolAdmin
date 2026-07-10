@@ -30,7 +30,6 @@ export default function Orders() {
           <div style={styles.summaryCard}>
             <h3>Delivery Date: {ordersData.date}</h3>
             <p><strong>Total Orders:</strong> {ordersData.total_orders}</p>
-            <p><strong>Total Amount:</strong> ₹{ordersData.total_amount}</p>
           </div>
         )}
 
@@ -46,9 +45,9 @@ export default function Orders() {
               )}
               <div>
                 <h3>{order.product_name}</h3>
-                {order.product_name.toLowerCase().includes("flower") && (
-                  <p><strong>Weight:</strong> {order.quantity * 10}g / packet</p>
-                )}
+                {order.product_name.toLowerCase().includes("flower") ? (
+                  <p><strong>Weight:</strong> {order.quantity * 10}g</p>
+                ) : <p><strong>Quantity:</strong> {order.quantity}</p>}
                 <p><strong>Order ID:</strong> {order.order_id}</p>
                 <p><strong>Phone:</strong> {order.phone_number}</p>
                 <p><strong>Customer:</strong> {order.user_name}</p>
